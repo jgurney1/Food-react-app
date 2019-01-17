@@ -11,8 +11,8 @@ const routing = (
         <div>
             <ul>
                 <li><h1 className="name" >NAME OF APP </h1></li>
-                <li><Link className="link" to="/">Home</Link></li>
                 <li><Link className="link" to="/MyRecipes">MyRecipes</Link></li>
+                <li><Link className="link" to="/">Home</Link></li>
             </ul>
             <Route exact path="/" component={App} />
             <Route path="/MyRecipes" component={MyRecipes} />
