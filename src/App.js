@@ -4,6 +4,7 @@ import RecipeSearchForm from './RecipeSearchForm.js';
 import TestReturned from './TestReturned.js';
 import GetRecipeUrl from './GetRecipeUrl';
 import DisplayResults from './DisplayResults';
+import DisplayResultsTable from './DisplayResultsTable';
 
 class App extends Component {
 
@@ -76,21 +77,14 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          
           <RecipeSearchForm 
             loadData={this.getData}
             loadUrl={this.getUrl} />
-          <TestReturned
-            title={this.state.recipeTitle}
-            readyTime={this.state.readyTime}
-            servings={this.state.servings}
-            image={this.state.image}
-            url={this.state.recipeUrl}
-            
-            
-          />
-          
+          <div className="resultsDiv">
           {this.state.recipeData.map((item, key) =>
-              <DisplayResults item={item} key={item.id}/>) }
+              <DisplayResultsTable item={item} key={item.id}/>) }
+              </div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import MyRecipes from './MyRecipes';
+import InputRecipe from './InputRecipe';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -11,9 +12,11 @@ const routing = (
         <div>
             <ul>
                 <li><h1 className="name" >NAME OF APP </h1></li>
-                <li><Link className="link" to="/MyRecipes">MyRecipes</Link></li>
+                <li><Link className="link" to="/InputRecipe">Input Recipe</Link></li>
+                <li><Link className="link" to="/MyRecipes">My Recipes</Link></li>
                 <li><Link className="link" to="/">Home</Link></li>
             </ul>
+            <Route path="/InputRecipe" component={InputRecipe} />
             <Route exact path="/" component={App} />
             <Route path="/MyRecipes" component={MyRecipes} />
         </div>

@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './DisplayResultsTable.css';
 
 
-const DisplayResultsTable = (props) => {
-    return (
-        <div>
-            <h3>{props.title}</h3>
-            <h3>Ready time:&nbsp;{props.readyTime}</h3>
-            <h3>Servings:&nbsp;{props.servings}</h3>
-            <img src={props.image} width="150" height="150"/><br/>
-            <a href={props.url} alt="Website Link not loaded or found">{props.url}</a>
-
-
-        </div>
-    )
+class DisplayResultsTable extends Component {
+    render() {
+        return (
+            <div className="resultsDiv">
+                <p>{this.props.item.recipeTitle}</p>
+                <p>Ready time:&nbsp;{this.props.item.readyTime}</p>
+                <p>Servings:&nbsp;{this.props.item.servings}</p>
+                <img src={this.props.item.image} width="150" height="150"/>
+                
+            </div>
+        );
+    }
 }
 
 export default DisplayResultsTable;
