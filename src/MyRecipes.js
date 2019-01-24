@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import BrowseRecipes from './BrowseRecipes.js';
+import axios from 'axios';
+import DisplayMyRecipesTable from './DisplayMyRecipesTable.js';
 
 class MyRecipes extends Component {
   
@@ -6,7 +9,8 @@ class MyRecipes extends Component {
     super(props);
   
     this.state = {
-      values: "select filter..."
+      values: "select filter...",
+      recipeData: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,6 +23,30 @@ class MyRecipes extends Component {
     alert('option is: ' + this.state.values);
     e.preventDefault();
   }  
+  getMyRecipes = async () => {
+    
+    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
+    .then(response => {
+      const tempList=[];
+      for(let i=0;i<response.data.length;i++) {
+        let tempItem = {
+          id: i,
+          recipeId: response.data[i].recipeId,
+          title: response.data[i].title,
+          readyTime: response.data[i].readyTime,
+          servings: response.data[i].servings,
+          method: response.data[i].method,
+          ingredients: response.data[i].ingredients,
+        }
+        tempList.push(tempItem);
+      }
+      
+      this.setState({
+        recipeData: tempList
+      })
+    })
+    .catch(error => console.log(error));
+  }
 
   render() {
     return (
@@ -33,6 +61,13 @@ class MyRecipes extends Component {
           </select>
           <input type="submit" value="Submit"/>
         </form>
+        <BrowseRecipes
+          loadRecipes={this.getMyRecipes}
+          />
+          <div className="resultDiv">
+          {this.state.recipeData.map((item, key) =>
+              <DisplayMyRecipesTable item={item} key={item.id}/>) }
+              </div>
       </div>
     );
   }

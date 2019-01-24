@@ -71,6 +71,8 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className="App">
@@ -81,7 +83,7 @@ class App extends Component {
           <RecipeSearchForm 
             loadData={this.getData}
             loadUrl={this.getUrl} />
-          <div className="resultsDiv">
+          <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
               <DisplayResultsTable item={item} key={item.id}/>) }
               </div>
