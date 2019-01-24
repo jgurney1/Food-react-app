@@ -11,6 +11,7 @@ class MyRecipes extends Component {
     this.state = {
       values: "select filter...",
       recipeData: [],
+      message: undefined
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,6 +49,16 @@ class MyRecipes extends Component {
     .catch(error => console.log(error));
   }
 
+  removeRecipeById = async (e) => {
+    e.preventDefault();
+    const dishId = e.target.elements.recipeId.value;
+    axios.delete("http://localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
+    .then(response => {
+      console.log(response.data.message);
+    })
+    .catch(error => console.log(error));
+  }
+
   render() {
     return (
       <div className="MyRecipes">
@@ -63,6 +74,7 @@ class MyRecipes extends Component {
         </form>
         <BrowseRecipes
           loadRecipes={this.getMyRecipes}
+          removeRecipe={this.removeRecipeById}
           />
           <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
