@@ -26,7 +26,7 @@ class MyRecipes extends Component {
   }  
   getMyRecipes = async () => {
     
-    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
+    axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -52,7 +52,7 @@ class MyRecipes extends Component {
   removeRecipeById = async (e) => {
     e.preventDefault();
     const dishId = e.target.elements.recipeId.value;
-    axios.delete("http://localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
+    axios.delete("http://localhost:8081/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
       console.log(response.data.message);
     })

@@ -76,10 +76,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <h3>todo </h3>
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Search database for recipe ideas.
+            Or sign-up for an account and save your own recipes and ones that you find
           </p>
-          
           <RecipeSearchForm 
             loadData={this.getData}
             loadUrl={this.getUrl} />

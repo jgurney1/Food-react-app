@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import MyRecipes from './MyRecipes';
 import InputRecipe from './InputRecipe';
+import SignIn from './SignIn.js';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -15,7 +16,12 @@ const routing = (
                 <li><Link className="link" to="/InputRecipe">Input Recipe</Link></li>
                 <li><Link className="link" to="/MyRecipes">My Recipes</Link></li>
                 <li><Link className="link" to="/">Home</Link></li>
+                
             </ul>
+            <ul className="loginList">
+                <li><Link className="login" to="/SignIn">Login</Link></li>
+            </ul>
+            <Route path="/SignIn" component={SignIn} />
             <Route path="/InputRecipe" component={InputRecipe} />
             <Route exact path="/" component={App} />
             <Route path="/MyRecipes" component={MyRecipes} />

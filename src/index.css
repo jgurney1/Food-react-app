@@ -47,3 +47,14 @@ li {
 .link:hover {
   background-color: purple;
 }
+
+.login {
+  float: center;
+  text-decoration: none;
+  color: white;
+
+}
+.loginList {
+  float: right;
+  width: 10%;
+}
