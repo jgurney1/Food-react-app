@@ -3,7 +3,7 @@ import React from 'react';
 const RecipeForm = (props) => {
     return (
         <div className="RecipeInputForm">
-            <form>
+            <form onSubmit={props.saveRecipe}>
                 
                 <input type="text" name="title" placeholder="Enter title..." /><br/><br/>
                 <input type="text" name="readyTime" placeholder="Ready time..."/> <br/><br/>

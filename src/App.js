@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import RecipeSearchForm from './RecipeSearchForm.js';
 import TestReturned from './TestReturned.js';
@@ -71,6 +72,20 @@ class App extends Component {
     })
   }
 
+  saveRecipe = async (data) => {
+console.log(data.recipeId);
+    axios({
+      
+      url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
+      method: 'post',
+      data: {
+      
+      }
+    }).then(response => {
+      console.log(response);
+    }).catch(error => console.log(error));
+  }
+
 
 
   render() {
@@ -86,7 +101,7 @@ class App extends Component {
             loadUrl={this.getUrl} />
           <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
-              <DisplayResultsTable item={item} key={item.id}/>) }
+              <DisplayResultsTable item={item} key={item.id} saveRecipe={this.saveRecipe}/>) }
               </div>
       </div>
     );
