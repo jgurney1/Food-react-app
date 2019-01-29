@@ -54,7 +54,7 @@ class MyRecipes extends Component {
     const dishId = e.target.elements.recipeId.value;
     axios.delete("http://localhost:8081/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
-      console.log(response.data.message);
+      console.log(response.data);
     })
     .catch(error => console.log(error));
   }

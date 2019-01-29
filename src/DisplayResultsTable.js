@@ -37,7 +37,7 @@ class DisplayResultsTable extends Component {
                 <p name="title">{this.props.item.recipeTitle}</p>
                 <p name="readyTime">{this.props.item.readyTime}</p>
                 <p name="servings">{this.props.item.servings}</p>
-                <img src={this.props.item.image} width="150" height="150"/>
+                <img src={this.props.item.image} width="150" height="150" alt="food"/>
                 
             </div>
         );

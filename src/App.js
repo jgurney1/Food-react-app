@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import RecipeSearchForm from './RecipeSearchForm.js';
-import TestReturned from './TestReturned.js';
-import GetRecipeUrl from './GetRecipeUrl';
-import DisplayResults from './DisplayResults';
 import DisplayResultsTable from './DisplayResultsTable';
 
 class App extends Component {

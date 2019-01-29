@@ -9,18 +9,50 @@ class SignIn extends Component {
         password: undefined
     }
     
-    addAccount = async () => {
-        axios.post("")
+    addAccount = async (e) => {
+        e.preventDefault();
+        axios({
+            url:'http://localhost:8081/Project-api/api/user/addAccount',
+           method: 'post',
+           data: {
+               email: e.target.elements.email.value,
+               userPassword: e.target.elements.password.value
+           } 
+        })
         .then(response => {
-            console.log(response);
+            console.log(response.data);
         })
         .catch(error => console.log(error));
     }
 
-    verifyAccount = async () => {
-        axios.get("")
+    verifyAccount = async (e) => {
+        e.preventDefault();
+        axios({
+            url:'http://localhost:8081/Project-api/api/user/verifyAccount',
+           method: 'post',
+           data: {
+               email: e.target.elements.email.value,
+               userPassword: e.target.elements.password.value
+           } 
+        })
         .then(response => {
-            console.log(response);
+            console.log(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+
+    updatePassword = async (e) => {
+        e.preventDefault();
+        axios({
+            url: 'http://localhost:8081/Project-api/api/user/updateAccount',
+            method: 'put',
+            data: {
+               email: e.target.elements.email.value,
+               userPassword: e.target.elements.password.value           
+            }
+        })
+        .then(response => {
+            console.log(response.data);
         })
         .catch(error => console.log(error));
     }
@@ -38,6 +70,11 @@ class SignIn extends Component {
                 <LoginForm
                     buttName="Login"
                     submit={this.verifyAccount}
+                />
+                <h4> Forgotten password? Enter email and a new password to reset</h4>
+                <LoginForm
+                    buttName="Reset Password"
+                    submit={this.updatePassword}
                 />
             </div>
         );

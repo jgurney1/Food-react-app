@@ -12,12 +12,12 @@ class InputRecipe extends Component {
             url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
             method: 'post',
             data: {
+                recipeId: e.target.elements.recipeId.value,
                 title: e.target.elements.title.value,
                 readyTime: e.target.elements.readyTime.value,
                 servings: e.target.elements.servings.value,
                 ingredients: e.target.elements.ingredients.value,
                 method: e.target.elements.method.value
-
             }
         }).then(response => {
             console.log(response);
