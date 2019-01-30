@@ -9,23 +9,11 @@ class MyRecipes extends Component {
     super(props);
   
     this.state = {
-      values: "select filter...",
       recipeData: [],
-      message: undefined
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(e) {
-    this.setState({values: e.target.value});
-  }
-
-  handleSubmit(e) {
-    alert('option is: ' + this.state.values);
-    e.preventDefault();
-  }  
-  getMyRecipes = async () => {
-    
+ 
+  getMyRecipes = async () => { 
     axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
@@ -41,7 +29,6 @@ class MyRecipes extends Component {
         }
         tempList.push(tempItem);
       }
-      
       this.setState({
         recipeData: tempList
       })
@@ -62,24 +49,15 @@ class MyRecipes extends Component {
   render() {
     return (
       <div className="MyRecipes">
-        <form onSubmit={this.handleSubmit}>
-          <h3>Search through saved recipes here</h3>
-          <select value={this.state.values} onChange={this.handleChange}>
-              <option value={this.state.values}>{this.state.values}</option>
-              <option value="first">First</option>
-              <option value="second">Second</option>
-              <option value="...">...</option>
-          </select>
-          <input type="submit" value="Submit"/>
-        </form>
+        <h3>Search through saved recipes here</h3>
         <BrowseRecipes
           loadRecipes={this.getMyRecipes}
           removeRecipe={this.removeRecipeById}
           />
-          <div className="resultDiv">
+        <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
               <DisplayMyRecipesTable item={item} key={item.id}/>) }
-              </div>
+        </div>
       </div>
     );
   }

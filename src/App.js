@@ -8,13 +8,6 @@ class App extends Component {
 
   state = {
     recipeData: [],
-    recipeTitle: undefined,
-    readyTime: undefined,
-    servings: undefined,
-    image: undefined,
-    recipeId: undefined,
-    recipeUrl: undefined,
-
   }
 
   getData = async (e) => {
@@ -41,49 +34,16 @@ class App extends Component {
       }
       tempList.push(tempItem);
     }
-
-    this.setState({
-      recipeTitle: response.results[0].title,
-      readyTime: response.results[0].readyInMinutes,
-      servings: response.results[0].servings,
-      image: (response.baseUri + response.results[0].image),
-      recipeId: response.results[0].id,
-      recipeData: tempList,
-    })
-
-  }
-
-  getUrl = async () => {
-    const id = this.state.recipeId;
-
-    const api_url = await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ id +"/information", {
-      method: 'GET',
-      headers: {
-         "X-RapidAPI-Key": "bqYhNobARpmshl2EUI7M8eFdIUayp1ykAxEjsnItlHGE4G34I1",
-      },
-    });
-    const retrieved = await api_url.json();
-
-    this.setState({
-      recipeUrl: retrieved.sourceUrl,
-    })
   }
 
   saveRecipe = async (data) => {
-console.log(data.recipeId);
     axios({
-      
       url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
       method: 'post',
-      data: {
-      
-      }
     }).then(response => {
       console.log(response);
     }).catch(error => console.log(error));
   }
-
-
 
   render() {
     return (

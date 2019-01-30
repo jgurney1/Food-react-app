@@ -14,8 +14,7 @@ class DisplayResultsTable extends Component {
     }
     
     handleChange = async () => {
-    axios({
-        
+    axios({ 
       url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
       method: 'post',
       data: {
@@ -28,7 +27,6 @@ class DisplayResultsTable extends Component {
       console.log(response);
     }).catch(error => console.log(error));        
     }
-
 
     render() {
         return (

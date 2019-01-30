@@ -24,11 +24,9 @@ class InputRecipe extends Component {
         }).catch(error => console.log(error));
     }
 
-
-
     render () {
         return (
-            <div>
+            <div className="inputRecipePage">
                 <h1> Enter your own recipes here </h1>
                 <RecipeForm
                 saveRecipe={this.addRecipe}
