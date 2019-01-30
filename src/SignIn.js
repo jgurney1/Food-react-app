@@ -57,6 +57,20 @@ class SignIn extends Component {
         .catch(error => console.log(error));
     }
 
+    deleteAccount = async (e) => {
+        e.preventDefault();
+        const email = e.target.elements.email.value;
+        axios({
+            url: 'http://localhost:8081/Project-api/api/user/removeAccount/' + email,
+            method: 'delete',
+            
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+
 
     render() {
         return (
@@ -75,6 +89,11 @@ class SignIn extends Component {
                 <LoginForm
                     buttName="Reset Password"
                     submit={this.updatePassword}
+                />
+                <h4>Want to delete your account? Enter email and password of account to delete</h4>
+                <LoginForm
+                    buttName="Delete Account"
+                    submit={this.deleteAccount}
                 />
             </div>
         );
