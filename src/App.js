@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './Stylesheets/App.css';
 import RecipeSearchForm from './RecipeSearchForm.js';
 import DisplayResultsTable from './DisplayResultsTable';
 
@@ -34,6 +34,9 @@ class App extends Component {
       }
       tempList.push(tempItem);
     }
+    this.setState({
+      recipeData: tempList
+    })
   }
 
   saveRecipe = async (data) => {
@@ -41,7 +44,7 @@ class App extends Component {
       url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
       method: 'post',
     }).then(response => {
-      console.log(response);
+      console.log(response.data);
     }).catch(error => console.log(error));
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './Stylesheets/index.css';
 import App from './App';
 import MyRecipes from './MyRecipes';
 import InputRecipe from './InputRecipe';

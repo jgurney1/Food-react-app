@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './DisplayResultsTable.css';
+import '/DisplayResultsTable.css';
 import axios from 'axios';
 
 class DisplayResultsTable extends Component {

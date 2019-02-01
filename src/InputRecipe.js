@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RecipeForm from './RecipeForm.js';
-import './InputRecipe.css';
+import './Stylesheets/InputRecipe.css';
 import axios from 'axios';
 
 class InputRecipe extends Component {
