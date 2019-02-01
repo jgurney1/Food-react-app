@@ -1,3 +1,30 @@
 body {
     text-align: center;
+    background-image: 'https://images.pexels.com/photos/349609/pexels-photo-349609.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+}
+
+.inputRecipePage {
+    padding: 15px;
+    border-radius: 1550px;
+    margin: 0 auto;
+    background-color: aqua;
+    width: 50%
+}
+
+.RecipeInputForm input {
+    width: 35%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.RecipeInputForm [name|=recipeId] {
+    background-color: brown;
+}
+
+.RecipeInputForm button {
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #333;
+    color: white;
+
 }

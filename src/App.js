@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Stylesheets/App.css';
+import './Stylesheets/DisplayResultsTable.css';
 import RecipeSearchForm from './RecipeSearchForm.js';
 import DisplayResultsTable from './DisplayResultsTable';
 
@@ -39,15 +39,6 @@ class App extends Component {
     })
   }
 
-  saveRecipe = async (data) => {
-    axios({
-      url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
-      method: 'post',
-    }).then(response => {
-      console.log(response.data);
-    }).catch(error => console.log(error));
-  }
-
   render() {
     return (
       <div className="App">
@@ -58,10 +49,10 @@ class App extends Component {
           </p>
           <RecipeSearchForm 
             loadData={this.getData}
-            loadUrl={this.getUrl} />
+           />
           <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
-              <DisplayResultsTable item={item} key={item.id} saveRecipe={this.saveRecipe}/>) }
+              <DisplayResultsTable item={item} key={item.id} />) }
               </div>
       </div>
     );

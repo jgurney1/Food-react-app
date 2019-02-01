@@ -7,9 +7,8 @@ class InputRecipe extends Component {
 
     addRecipe = async (e) => {
         e.preventDefault();
-        console.log(e.target.elements.ingredients.value);
         axios({
-            url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/1',
+            url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/' + e.target.elements.recipeId.value,
             method: 'post',
             data: {
                 recipeId: e.target.elements.recipeId.value,
@@ -20,7 +19,7 @@ class InputRecipe extends Component {
                 method: e.target.elements.method.value
             }
         }).then(response => {
-            console.log(response);
+            console.log(response.data);
         }).catch(error => console.log(error));
     }
 

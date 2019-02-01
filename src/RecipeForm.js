@@ -8,7 +8,7 @@ const RecipeForm = (props) => {
                 <input type="text" name="title" placeholder="Enter title..." /><br/><br/>
                 <input type="text" name="readyTime" placeholder="Ready time..."/> <br/><br/>
                 <input type="text" name="servings" placeholder="Servings..."/><br/><br/>
-                <input type="text" name="ingredients" placeholder="Ingredients..."/><br/><br/>
+                <input type="text" name="ingredients" multiline={true} numberOfLines={5} placeholder="Ingredients..."/><br/><br/>
                 <input type="text" name="method" placeholder="Method..."/><br/><br/>
                 <button>Submit </button>
             </form>

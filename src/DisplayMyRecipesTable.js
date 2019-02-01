@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './DisplayResultsTable.css';
+import './Stylesheets/DisplayResultsTable.css';
 
 
 class DisplayMyRecipesTable extends Component {
     render() {
         return (
             <div className="resultsDiv">
-                <p>{this.props.item.recipeId}</p>
+                <p>Recipe ID:&nbsp;{this.props.item.recipeId}</p>
                 <p>{this.props.item.title}</p>
                 <p>Ready time:&nbsp;{this.props.item.readyTime}</p>
                 <p>Servings:&nbsp;{this.props.item.servings}</p>

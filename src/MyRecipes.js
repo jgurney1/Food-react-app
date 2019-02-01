@@ -13,6 +13,29 @@ class MyRecipes extends Component {
     };
   }
  
+  componentDidMount = async () => {
+    axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
+    .then(response => {
+      const tempList=[];
+      for(let i=0;i<response.data.length;i++) {
+        let tempItem = {
+          id: i,
+          recipeId: response.data[i].recipeId,
+          title: response.data[i].title,
+          readyTime: response.data[i].readyTime,
+          servings: response.data[i].servings,
+          method: response.data[i].method,
+          ingredients: response.data[i].ingredients,
+        }
+        tempList.push(tempItem);
+      }
+      this.setState({
+        recipeData: tempList
+      })
+    })
+    .catch(error => console.log(error));
+  }
+
   getMyRecipes = async () => { 
     axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
     .then(response => {

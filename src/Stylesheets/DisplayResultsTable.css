@@ -1,8 +1,11 @@
-th {
-    height: 150px;
+
+div.resultDiv {
+    margin: 2%;
 }
+
 
 div.resultsDiv {
     outline: 5px;
-    
+    width: 40%;
+    margin: 0 auto;
 }
