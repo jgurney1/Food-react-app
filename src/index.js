@@ -12,6 +12,7 @@ const routing = (
     <Router>
         <div>
             <ul>
+                <li><img src="./tea-rex.png" height="100" width="100"/></li>
                 <li><h1 className="name" >IT'S TEA-REX TIME </h1></li>
                 <li><Link className="link" to="/InputRecipe">Input Recipe</Link></li>
                 <li><Link className="link" to="/MyRecipes">My Recipes</Link></li>
