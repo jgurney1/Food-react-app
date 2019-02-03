@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Stylesheets/DisplayResultsTable.css';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class DisplayResultsTable extends Component {
     constructor(props) {
@@ -14,9 +16,8 @@ class DisplayResultsTable extends Component {
     }
     
     handleChange = async () => {
-        console.log(this.props.item.recipeTitle);
     axios({ 
-      url: 'http://localhost:8081/Project-api/api/recipe/addrecipe/'+ this.props.item.recipeId,
+      url: 'http://localhost:8080/Project-api/api/recipe/addrecipe/'+ localStorage.getItem("loggedIn"),
       method: 'post',
       data: {
         recipeId: this.props.item.recipeId,
@@ -25,7 +26,7 @@ class DisplayResultsTable extends Component {
         servings: this.props.item.servings
       }
     }).then(response => {
-      console.log(response.data);
+      toast("" + response.data.message);
     }).catch(error => console.log(error));        
     }
 
@@ -37,7 +38,7 @@ class DisplayResultsTable extends Component {
                 <p name="readyTime">Ready Time:&nbsp;{this.props.item.readyTime}</p>
                 <p name="servings">Servings:&nbsp;{this.props.item.servings}</p>
                 <img src={this.props.item.image} width="150" height="150" alt="food"/>
-                
+                <ToastContainer autoClose={1000}/>
             </div>
         );
     }

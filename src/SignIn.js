@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm.js';
+import './Stylesheets/SignIn.css';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class SignIn extends Component {
-
-    state = {
-        userName: undefined,
-        password: undefined
-    }
     
     addAccount = async (e) => {
         e.preventDefault();
         axios({
-            url:'http://localhost:8081/Project-api/api/user/addAccount',
+            url:'http://localhost:8080/Project-api/api/user/addAccount',
            method: 'post',
            data: {
                email: e.target.elements.email.value,
@@ -20,23 +18,27 @@ class SignIn extends Component {
            } 
         })
         .then(response => {
-            console.log(response.data);
+            toast("" + response.data.message);
         })
         .catch(error => console.log(error));
     }
 
     verifyAccount = async (e) => {
         e.preventDefault();
+        const userEmail = e.target.elements.email.value;
         axios({
-            url:'http://localhost:8081/Project-api/api/user/verifyAccount',
+            url:'http://localhost:8080/Project-api/api/user/verifyAccount',
            method: 'post',
            data: {
-               email: e.target.elements.email.value,
+               email: userEmail,
                userPassword: e.target.elements.password.value
            } 
         })
         .then(response => {
-            console.log(response.data);
+                if(response.data.message === "Login Successful") {
+                    localStorage.setItem("loggedIn", userEmail);
+                }
+                toast("" + response.data.message);
         })
         .catch(error => console.log(error));
     }
@@ -44,7 +46,7 @@ class SignIn extends Component {
     updatePassword = async (e) => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:8081/Project-api/api/user/updateAccount',
+            url: 'http://localhost:8080/Project-api/api/user/updateAccount',
             method: 'put',
             data: {
                email: e.target.elements.email.value,
@@ -52,7 +54,7 @@ class SignIn extends Component {
             }
         })
         .then(response => {
-            console.log(response.data);
+            toast("" + response.data.message);
         })
         .catch(error => console.log(error));
     }
@@ -61,12 +63,12 @@ class SignIn extends Component {
         e.preventDefault();
         const email = e.target.elements.email.value;
         axios({
-            url: 'http://localhost:8081/Project-api/api/user/removeAccount/' + email,
+            url: 'http://localhost:8080/Project-api/api/user/removeAccount/' + email,
             method: 'delete',
             
         })
         .then(response => {
-            console.log(response.data);
+            toast("" + response.data.message);
         })
         .catch(error => console.log(error));
     }
@@ -75,26 +77,30 @@ class SignIn extends Component {
     render() {
         return (
             <div className="signInPage">
-                <h3> New Users sign up here! </h3>
+                <br/><br/>
+
                 <LoginForm
+                    header="New Users sign up here!"
                     buttName="Register"
                     submit={this.addAccount}
-                />
-                <h3> Already got an account? Sign in here</h3>
+                /><br/>
                 <LoginForm
+                    header="Already got an account? Sign in here"
                     buttName="Login"
                     submit={this.verifyAccount}
-                />
-                <h4> Forgotten password? Enter email and a new password to reset</h4>
+                /><br/>
                 <LoginForm
+                    header=" Forgotten password? Enter email and a new password to reset"
                     buttName="Reset Password"
                     submit={this.updatePassword}
-                />
-                <h4>Want to delete your account? Enter email and password of account to delete</h4>
+                /><br/>
                 <LoginForm
+                    header="Want to delete your account? Enter email and password of account to delete"
                     buttName="Delete Account"
                     submit={this.deleteAccount}
                 />
+                <ToastContainer autoClose={1000}/>
+                <br/><br/><br/>
             </div>
         );
     }

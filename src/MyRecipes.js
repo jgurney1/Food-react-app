@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BrowseRecipes from './BrowseRecipes.js';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import DisplayMyRecipesTable from './DisplayMyRecipesTable.js';
 
 class MyRecipes extends Component {
@@ -14,7 +16,7 @@ class MyRecipes extends Component {
   }
  
   componentDidMount = async () => {
-    axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
+    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -26,6 +28,7 @@ class MyRecipes extends Component {
           servings: response.data[i].servings,
           method: response.data[i].method,
           ingredients: response.data[i].ingredients,
+          user: response.data[i].user
         }
         tempList.push(tempItem);
       }
@@ -37,7 +40,7 @@ class MyRecipes extends Component {
   }
 
   getMyRecipes = async () => { 
-    axios.get("http://localhost:8081/Project-api/api/recipe/getallrecipes")
+    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -49,6 +52,7 @@ class MyRecipes extends Component {
           servings: response.data[i].servings,
           method: response.data[i].method,
           ingredients: response.data[i].ingredients,
+          user: response.data[i].user
         }
         tempList.push(tempItem);
       }
@@ -62,17 +66,20 @@ class MyRecipes extends Component {
   removeRecipeById = async (e) => {
     e.preventDefault();
     const dishId = e.target.elements.recipeId.value;
-    axios.delete("http://localhost:8081/Project-api/api/recipe/removerecipebyid/"+ dishId)
+    axios.delete("http://localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
-      console.log(response.data);
+      toast("" + response.data.message);
     })
     .catch(error => console.log(error));
   }
 
+
   render() {
     return (
       <div className="MyRecipes">
-        <h3>Search through saved recipes here</h3>
+      <br/><br/>
+        <div className="MyRecipesBody">
+        <h2>Search through and delete entries in food database</h2>
         <BrowseRecipes
           loadRecipes={this.getMyRecipes}
           removeRecipe={this.removeRecipeById}
@@ -80,6 +87,8 @@ class MyRecipes extends Component {
         <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
               <DisplayMyRecipesTable item={item} key={item.id}/>) }
+        </div>
+        <ToastContainer autoClose={1000}/>
         </div>
       </div>
     );

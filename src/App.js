@@ -42,17 +42,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <h3>todo </h3>
-          <p>
+          <h1>Welcome to Tea-Rex! </h1>
+          <div className="AppBody">
+          <h3>
             Search database for recipe ideas.
             Or sign-up for an account and save your own recipes and ones that you find
-          </p>
+          </h3>
           <RecipeSearchForm 
             loadData={this.getData}
            />
           <div className="resultDiv">
           {this.state.recipeData.map((item, key) =>
               <DisplayResultsTable item={item} key={item.id} />) }
+              </div>
               </div>
       </div>
     );

@@ -5,6 +5,7 @@ import App from './App';
 import MyRecipes from './MyRecipes';
 import InputRecipe from './InputRecipe';
 import SignIn from './SignIn.js';
+import trex from'./tea-rex.png';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -12,7 +13,7 @@ const routing = (
     <Router>
         <div>
             <ul>
-                <li><img src="./tea-rex.png" height="100" width="100"/></li>
+                <li><img className="name" src={trex} height="90" width="90" alt="page logo"/></li>
                 <li><h1 className="name" >IT'S TEA-REX TIME </h1></li>
                 <li><Link className="link" to="/InputRecipe">Input Recipe</Link></li>
                 <li><Link className="link" to="/MyRecipes">My Recipes</Link></li>
@@ -26,6 +27,7 @@ const routing = (
             <Route path="/InputRecipe" component={InputRecipe} />
             <Route exact path="/" component={App} />
             <Route path="/MyRecipes" component={MyRecipes} />
+            {localStorage.setItem("loggedIn", "Guest")}
         </div>
     </Router>
 )

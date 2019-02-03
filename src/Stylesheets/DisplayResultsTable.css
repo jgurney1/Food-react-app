@@ -2,10 +2,32 @@
 div.resultDiv {
     margin: 2%;
 }
-
+input {
+    border-radius: 12px;
+    width: 15%;
+    margin: 10px;
+    padding: 10px;
+}
 
 div.resultsDiv {
-    outline: 5px;
+    outline: 9px;
+    outline-color: white;
     width: 40%;
     margin: 0 auto;
+}
+
+.MyRecipesBody {
+    border-radius: 12px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    width: 55%;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+button {
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #333;
+    color: white;
 }
