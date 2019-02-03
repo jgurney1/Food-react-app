@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <h1>Welcome to Tea-Rex! </h1>
+          <h1>Welcome to Tea_Rex! </h1>
           <div className="AppBody">
           <h3>
             Search database for recipe ideas.

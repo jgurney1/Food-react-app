@@ -14,7 +14,7 @@ const routing = (
         <div>
             <ul>
                 <li><img className="name" src={trex} height="90" width="90" alt="page logo"/></li>
-                <li><h1 className="name" >IT'S TEA-REX TIME </h1></li>
+                <li><h1 className="name" >IT'S TEA_REX TIME </h1></li>
                 <li><Link className="link" to="/InputRecipe">Input Recipe</Link></li>
                 <li><Link className="link" to="/MyRecipes">My Recipes</Link></li>
                 <li><Link className="link" to="/">Home</Link></li>
