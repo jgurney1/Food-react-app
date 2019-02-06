@@ -10,7 +10,7 @@ class DisplayMyRecipesTable extends Component {
                 <p>{this.props.item.title}</p>
                 <p>Ready time:&nbsp;{this.props.item.readyTime}</p>
                 <p>Servings:&nbsp;{this.props.item.servings}</p>
-                {this.props.item.ingredients && this.props.item.method && <p>Ingredients:&nbsp;{this.props.item.ingredients}, &nbsp;Metod:&nbsp;{this.props.item.method}</p>}
+                {this.props.item.ingredients && this.props.item.method && <p>Ingredients:&nbsp;{this.props.item.ingredients}, &nbsp;Method:&nbsp;{this.props.item.method}</p>}
                 {this.props.item.user && <p>Added buy user:&nbsp;{this.props.item.user}</p>}
             </div>
         );

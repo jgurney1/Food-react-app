@@ -10,7 +10,7 @@ class InputRecipe extends Component {
     addRecipe = async (e) => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:8080/Project-api/api/recipe/addrecipe/' + localStorage.getItem("loggedIn"),
+            url: 'http://localhost:1337/localhost:8080/Project-api/api/recipe/addrecipe/' + localStorage.getItem("loggedIn"),
             method: 'post',
             data: {
                 recipeId: e.target.elements.recipeId.value,

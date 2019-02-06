@@ -66,12 +66,17 @@ class MyRecipes extends Component {
   removeRecipeById = async (e) => {
     e.preventDefault();
     const dishId = e.target.elements.recipeId.value;
+    if(dishId % 1 === 0 ) {
     axios.delete("http://localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
       toast("" + response.data.message);
     })
     .catch(error => console.log(error));
   }
+  else {
+    toast(""+ dishId + " is not an id only use positive whole numbers");
+  }
+}
 
 
   render() {

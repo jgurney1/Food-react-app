@@ -13,11 +13,12 @@ class DisplayResultsTable extends Component {
             readyTime: this.props.item.readyTime,
             servings: this.props.item.servings           
         }
+        this.handleChange = this.handleChange.bind(this);
     }
     
     handleChange = async () => {
     axios({ 
-      url: 'http://localhost:8080/Project-api/api/recipe/addrecipe/'+ localStorage.getItem("loggedIn"),
+      url: 'http://localhost:1337/localhost:8080/Project-api/api/recipe/addrecipe/' + localStorage.getItem("loggedIn"),
       method: 'post',
       data: {
         recipeId: this.props.item.recipeId,

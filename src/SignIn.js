@@ -10,7 +10,7 @@ class SignIn extends Component {
     addAccount = async (e) => {
         e.preventDefault();
         axios({
-            url:'http://localhost:8080/Project-api/api/user/addAccount',
+            url:' http://localhost:1337/localhost:8080/Project-api/api/user/addAccount',
            method: 'post',
            data: {
                email: e.target.elements.email.value,
@@ -27,7 +27,7 @@ class SignIn extends Component {
         e.preventDefault();
         const userEmail = e.target.elements.email.value;
         axios({
-            url:'http://localhost:8080/Project-api/api/user/verifyAccount',
+            url:'http://localhost:1337/localhost:8080/Project-api/api/user/verifyAccount',
            method: 'post',
            data: {
                email: userEmail,
@@ -46,7 +46,7 @@ class SignIn extends Component {
     updatePassword = async (e) => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:8080/Project-api/api/user/updateAccount',
+            url: 'http://localhost:1337/localhost:8080/Project-api/api/user/updateAccount',
             method: 'put',
             data: {
                email: e.target.elements.email.value,
@@ -59,20 +59,23 @@ class SignIn extends Component {
         .catch(error => console.log(error));
     }
 
-    deleteAccount = async (e) => {
-        e.preventDefault();
-        const email = e.target.elements.email.value;
+    deleteAccount = async () => {
+        if (localStorage.getItem("loggedIn") !== "Guest") {
         axios({
-            url: 'http://localhost:8080/Project-api/api/user/removeAccount/' + email,
+            url: 'http://localhost:1337/localhost:8080/Project-api/api/user/removeAccount/' + localStorage.getItem("loggedIn"),
             method: 'delete',
             
         })
         .then(response => {
             toast("" + response.data.message);
+            localStorage.setItem("loggedIn", "Guest");
         })
         .catch(error => console.log(error));
     }
-
+    else {
+        toast("Currently logged in as guest please log in to delete account");
+    }
+    }
 
     render() {
         return (
@@ -94,11 +97,10 @@ class SignIn extends Component {
                     buttName="Reset Password"
                     submit={this.updatePassword}
                 /><br/>
-                <LoginForm
-                    header="Want to delete your account? Enter email and password of account to delete"
-                    buttName="Delete Account"
-                    submit={this.deleteAccount}
-                />
+                <div className="loginForm">
+                <h3>Want to delete your account?</h3>
+                <button onClick={this.deleteAccount}>Delete Account</button>    
+                </div>
                 <ToastContainer autoClose={1000}/>
                 <br/><br/><br/>
             </div>
