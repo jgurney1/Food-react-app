@@ -16,7 +16,7 @@ class MyRecipes extends Component {
   }
  
   componentDidMount = async () => {
-    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
+    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -40,7 +40,7 @@ class MyRecipes extends Component {
   }
 
   getMyRecipes = async () => { 
-    axios.get("http://localhost:8080/Project-api/api/recipe/getallrecipes")
+    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -67,7 +67,7 @@ class MyRecipes extends Component {
     e.preventDefault();
     const dishId = e.target.elements.recipeId.value;
     if(dishId % 1 === 0 ) {
-    axios.delete("http://localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
+    axios.delete("http://localhost:1337/localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
       toast("" + response.data.message);
     })
@@ -78,6 +78,29 @@ class MyRecipes extends Component {
   }
 }
 
+  showMyRecipes = async (e) => {
+    e.preventDefault();
+    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getMyRecipes/" + localStorage.getItem("loggedIn"))
+    .then(response => {
+      const tempList=[];
+      for(let i=0;i<response.data.length;i++) {
+        let tempItem = {
+          id: i,
+          recipeId: response.data[i].recipeId,
+          title: response.data[i].title,
+          readyTime: response.data[i].readyTime,
+          servings: response.data[i].servings,
+          method: response.data[i].method,
+          ingredients: response.data[i].ingredients,
+        }
+        tempList.push(tempItem);
+      }
+      this.setState({
+        recipeData: tempList
+      })
+    })
+    .catch(error => console.log(error));
+  }
 
   render() {
     return (
@@ -86,6 +109,7 @@ class MyRecipes extends Component {
         <div className="MyRecipesBody">
         <h2>Search through and delete entries in food database</h2>
         <BrowseRecipes
+          myRecipes={this.showMyRecipes}
           loadRecipes={this.getMyRecipes}
           removeRecipe={this.removeRecipeById}
           />
