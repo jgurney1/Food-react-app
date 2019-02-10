@@ -16,7 +16,7 @@ class MyRecipes extends Component {
   }
  
   componentDidMount = async () => {
-    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getallrecipes")
+    axios.get("http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -40,7 +40,7 @@ class MyRecipes extends Component {
   }
 
   getMyRecipes = async () => { 
-    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getallrecipes")
+    axios.get("http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/recipe/getallrecipes")
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {
@@ -67,7 +67,7 @@ class MyRecipes extends Component {
     e.preventDefault();
     const dishId = e.target.elements.recipeId.value;
     if(dishId % 1 === 0 ) {
-    axios.delete("http://localhost:1337/localhost:8080/Project-api/api/recipe/removerecipebyid/"+ dishId)
+    axios.delete("http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/recipe/removerecipebyid/"+ dishId)
     .then(response => {
       toast("" + response.data.message);
     })
@@ -80,7 +80,7 @@ class MyRecipes extends Component {
 
   showMyRecipes = async (e) => {
     e.preventDefault();
-    axios.get("http://localhost:1337/localhost:8080/Project-api/api/recipe/getMyRecipes/" + localStorage.getItem("loggedIn"))
+    axios.get("http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/recipe/getMyRecipes/" + localStorage.getItem("loggedIn"))
     .then(response => {
       const tempList=[];
       for(let i=0;i<response.data.length;i++) {

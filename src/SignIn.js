@@ -10,7 +10,7 @@ class SignIn extends Component {
     addAccount = async (e) => {
         e.preventDefault();
         axios({
-            url:' http://localhost:1337/localhost:8080/Project-api/api/user/addAccount',
+            url:'http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/user/addAccount',
            method: 'post',
            data: {
                email: e.target.elements.email.value,
@@ -27,7 +27,7 @@ class SignIn extends Component {
         e.preventDefault();
         const userEmail = e.target.elements.email.value;
         axios({
-            url:'http://localhost:1337/localhost:8080/Project-api/api/user/verifyAccount',
+            url:'http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/user/verifyAccount',
            method: 'post',
            data: {
                email: userEmail,
@@ -46,7 +46,7 @@ class SignIn extends Component {
     updatePassword = async (e) => {
         e.preventDefault();
         axios({
-            url: 'http://localhost:1337/localhost:8080/Project-api/api/user/updateAccount',
+            url: 'http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/user/updateAccount',
             method: 'put',
             data: {
                email: e.target.elements.email.value,
@@ -62,7 +62,7 @@ class SignIn extends Component {
     deleteAccount = async () => {
         if (localStorage.getItem("loggedIn") !== "Guest") {
         axios({
-            url: 'http://localhost:1337/localhost:8080/Project-api/api/user/removeAccount/' + localStorage.getItem("loggedIn"),
+            url: 'http://joe-51174.uksouth.cloudapp.azure.com:8181/Project-api/api/user/removeAccount/' + localStorage.getItem("loggedIn"),
             method: 'delete',
             
         })
